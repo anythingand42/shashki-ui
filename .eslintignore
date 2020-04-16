@@ -1,0 +1,6 @@
+/build
+/cypress_test
+/dist
+/eslint-report.json
+/reports
+node_modules/*

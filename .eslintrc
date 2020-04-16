@@ -1,0 +1,75 @@
+{
+    "extends": [
+        "react-app",
+        "airbnb-typescript",
+        "airbnb/hooks",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:json/recommended",
+        "plugin:jest/recommended",
+        "prettier",
+        "prettier/react",
+        "prettier/@typescript-eslint"
+    ],
+    "plugins": [
+        "@typescript-eslint",
+        "json",
+        "jest",
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "project": "tsconfig.json",
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true,
+        "jest": true
+    },
+    "rules": {
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+              "devDependencies": true
+            }
+        ], 
+        "spaced-comment": 0,
+        "import/prefer-default-export": 0,
+        "react/prop-types": 0,
+        "react/jsx-props-no-spreading": [
+            0,
+            {
+                "custom": "ignore"
+            }
+        ],
+        "no-param-reassign": [
+            "error",
+            {
+                "props": true,
+                "ignorePropertyModificationsForRegex": [
+                    "^target"
+                ]
+            }
+        ],
+        "no-plusplus": [
+            "error",
+            {
+                "allowForLoopAfterthoughts": true
+            }
+        ],
+        "prettier/prettier": "warn"
+    },
+    "settings": {
+        "react": {
+            "version": "16.12.0"
+        },
+        "import/resolver": {
+            "typescript": {} // this loads <rootdir>/tsconfig.json to eslint
+        }
+    }
+}
