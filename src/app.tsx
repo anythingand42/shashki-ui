@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Header from './header/header';
 import Home from './views/home';
 import Training from './views/training';
@@ -9,6 +10,14 @@ import appRoutes from './constants/app-routes';
 import SignIn from './views/sign-in/sign-in';
 import SignUp from './views/sign-up/sign-up';
 import AuthProvider from './auth/auth-provider';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        padding: {
+            paddingTop: theme.spacing(3),
+        },
+    }),
+);
 
 function AnimatedSwitch() {
     const location = useLocation();
@@ -31,11 +40,12 @@ function AnimatedSwitch() {
 }
 
 function App() {
+    const classes = useStyles();
     return (
         <AuthProvider>
             <Router>
                 <Header />
-                <Container maxWidth="xl">
+                <Container className={classes.padding} maxWidth="xl">
                     <AnimatedSwitch />
                 </Container>
             </Router>

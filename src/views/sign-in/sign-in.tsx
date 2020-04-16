@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import { Link as RouterLink, useHistory } from 'react-router-dom';
-import { FormHelperText } from '@material-ui/core';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import appRoutes from '../../constants/app-routes';
 import AuthContext from '../../auth/auth-context';
 
