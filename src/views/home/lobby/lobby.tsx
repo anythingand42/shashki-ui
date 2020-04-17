@@ -9,9 +9,6 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
-    table: {
-        minWidth: 650,
-    },
     paper: {
         height: '80vh',
     },
@@ -35,7 +32,7 @@ function Lobby() {
     return (
         <Paper className={classes.paper}>
             <TableContainer>
-                <Table className={classes.table} size="small" aria-label="a dense table">
+                <Table size="small">
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">Player</TableCell>

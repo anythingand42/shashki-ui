@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import {
-    Button,
-    Menu,
-    MenuItem,
-    ListItemIcon,
-    ListItemText,
-    makeStyles,
-    createStyles,
-} from '@material-ui/core';
 import PowerIcon from '@material-ui/icons/PowerSettingsNew';
+import { Theme, makeStyles, createStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         iconContainer: {
-            minWidth: '2em',
+            minWidth: theme.spacing(2),
         },
     }),
 );
