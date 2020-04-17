@@ -66,7 +66,7 @@ function Header() {
                 <Toolbar>
                     <Tabs value={tab} onChange={handleChangeTab} className={classes.tabs}>
                         <Tab label="Play" to={appRoutes.home} component={Link} />
-                        <Tab label="Learn" to={appRoutes.training} component={Link} />
+                        <Tab label="Training" to={appRoutes.training} component={Link} />
                     </Tabs>
                     {authorized && <AccountMenu userName={userName!} signOut={signOut} />}
                     {!authorized && (

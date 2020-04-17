@@ -12,6 +12,11 @@ const useStyles = makeStyles({
     paper: {
         height: '80vh',
     },
+    row: {
+        '&:hover': {
+            cursor: 'pointer',
+        },
+    },
 });
 
 function createData(name: string, rating: number, time: string, mode: string) {
@@ -43,7 +48,7 @@ function Lobby() {
                     </TableHead>
                     <TableBody>
                         {rows.map((row) => (
-                            <TableRow key={row.name}>
+                            <TableRow hover className={classes.row} key={row.name}>
                                 <TableCell align="center">{row.name}</TableCell>
                                 <TableCell align="center">{row.rating}</TableCell>
                                 <TableCell align="center">{row.time}</TableCell>

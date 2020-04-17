@@ -8,10 +8,10 @@ function Home() {
     return (
         <Container maxWidth="lg">
             <Grid container spacing={3}>
-                <Grid item xs={12} md={10}>
+                <Grid item xs={10}>
                     <Lobby />
                 </Grid>
-                <Grid item xs={12} md={2}>
+                <Grid item xs={2}>
                     <Buttons />
                 </Grid>
             </Grid>
