@@ -13,9 +13,6 @@ import AccountMenu from './account-menu';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
-            flexGrow: 1,
-        },
         menuButton: {
             marginRight: theme.spacing(2),
         },
@@ -61,8 +58,8 @@ function Header() {
     }, [match]);
 
     return (
-        <div className={classes.root}>
-            <AppBar position="static">
+        <header>
+            <AppBar position="fixed">
                 <Toolbar>
                     <Tabs value={tab} onChange={handleChangeTab} className={classes.tabs}>
                         <Tab label="Play" to={appRoutes.home} component={Link} />
@@ -76,7 +73,7 @@ function Header() {
                     )}
                 </Toolbar>
             </AppBar>
-        </div>
+        </header>
     );
 }
 

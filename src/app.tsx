@@ -13,8 +13,10 @@ import AuthProvider from './auth/auth-provider';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        padding: {
-            paddingTop: theme.spacing(3),
+        container: {
+            paddingTop: theme.spacing(10),
+            height: '100%',
+            paddingBottom: theme.spacing(2),
         },
     }),
 );
@@ -45,7 +47,7 @@ function App() {
         <AuthProvider>
             <Router>
                 <Header />
-                <Container className={classes.padding} maxWidth="xl">
+                <Container className={classes.container} maxWidth="xl">
                     <AnimatedSwitch />
                 </Container>
             </Router>
