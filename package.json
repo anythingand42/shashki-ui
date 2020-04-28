@@ -5,7 +5,8 @@
     "dependencies": {
         "@material-ui/core": "latest",
         "@material-ui/icons": "^4.9.1",
-        "@mposk98/game-board": "^1.0.0",
+        "@mposk98/game-board": "file:../game-board/mposk98-game-board-1.0.0.tgz",
+        "@mposk98/shashki-validator": "file:../shashki-validator/mposk98-shashki-validator-1.0.0.tgz",
         "clsx": "^1.1.0",
         "immutability-helper": "^3.0.2",
         "react": "latest",
