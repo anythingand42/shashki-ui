@@ -4,8 +4,10 @@ import JSGameBoard from '@mposk98/game-board';
 //@ts-ignore
 import shashki from '@mposk98/shashki-validator';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import white from './icons/white-man.svg';
-import black from './icons/black-man.svg';
+import whiteMan from './icons/white-man.svg';
+import blackMan from './icons/black-man.svg';
+import whiteKing from './icons/white-king.svg';
+import blackKing from './icons/black-king.svg';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -18,6 +20,8 @@ const useStyles = makeStyles(() =>
 const gameBoard = JSGameBoard();
 const shashkiGame = new shashki.Validator();
 shashkiGame.setStartingPosition();
+//@ts-ignore
+window.shashkiGame = shashkiGame;
 
 const setPieces = () => {
     for (let row = 0; row < 8; ++row) {
@@ -25,9 +29,18 @@ const setPieces = () => {
             const piece = shashkiGame.boardState[row][col];
             if (piece !== null) {
                 if (piece.turn === shashki.Turns.White) {
-                    gameBoard.setPiece([row, col], white);
-                } else {
-                    gameBoard.setPiece([row, col], black);
+                    if (piece.pieceType === shashki.PieceTypes.Man) {
+                        gameBoard.setPiece([row, col], whiteMan);
+                    } else {
+                        gameBoard.setPiece([row, col], whiteKing);
+                    }
+                }
+                if (piece.turn === shashki.Turns.Black) {
+                    if (piece.pieceType === shashki.PieceTypes.Man) {
+                        gameBoard.setPiece([row, col], blackMan);
+                    } else {
+                        gameBoard.setPiece([row, col], blackKing);
+                    }
                 }
             } else {
                 gameBoard.setPiece([row, col], null);
@@ -44,19 +57,22 @@ gameBoard.onDragStart(([row, col]: [number, number]) => {
     if (piece !== null) {
         idFrom = [row, col];
         if (piece.turn === shashki.Turns.White) {
-            return white;
+            if (piece.pieceType === shashki.PieceTypes.King) {
+                return whiteKing;
+            }
+            return whiteMan;
         }
-        return black;
+        if (piece.pieceType === shashki.PieceTypes.King) {
+            return blackKing;
+        }
+        return blackMan;
     }
     return null;
 });
 gameBoard.onDragEnd((idTo?: [number, number]) => {
-    console.log('idFrom', idFrom);
-    console.log('idTo', idTo);
     if (idTo !== null) {
         shashkiGame.makeMove(idFrom, idTo);
         idFrom = null;
-        console.log(shashkiGame.ascii());
     }
     setPieces();
 });
