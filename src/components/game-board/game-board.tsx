@@ -50,12 +50,28 @@ const setPieces = () => {
 };
 setPieces();
 
+const removeHighlighters = () => {
+    for (let row = 0; row < 8; ++row) {
+        for (let col = 0; col < 8; ++col) {
+            gameBoard.unhighlightCell([row, col]);
+        }
+    }
+};
+
 let idFrom: [number, number] | null = null;
 
-gameBoard.onDragStart(([row, col]: [number, number]) => {
+gameBoard.onDragStart((id: [number, number]) => {
+    const [row, col] = id;
     const piece = shashkiGame.boardState[row][col];
     if (piece !== null) {
-        idFrom = [row, col];
+        idFrom = id;
+        const possibleMoves = shashkiGame.getPossibleMoves(id);
+        if (possibleMoves !== null) {
+            possibleMoves.moves.forEach((move: any) => {
+                gameBoard.highlightCell(move.to);
+            });
+        }
+
         if (piece.turn === shashki.Turns.White) {
             if (piece.pieceType === shashki.PieceTypes.King) {
                 return whiteKing;
@@ -75,6 +91,7 @@ gameBoard.onDragEnd((idTo?: [number, number]) => {
         idFrom = null;
     }
     setPieces();
+    removeHighlighters();
 });
 
 interface IGameBoardProps {
