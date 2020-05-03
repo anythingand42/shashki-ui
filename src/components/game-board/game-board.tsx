@@ -23,28 +23,33 @@ shashkiGame.setStartingPosition();
 //@ts-ignore
 window.shashkiGame = shashkiGame;
 
+const setPiece = (row: number, col: number, flip: boolean = false) => {
+    const piece = shashkiGame.boardState[row][col];
+    const boardRow = flip ? 7 - row : row;
+    const boardCol = flip ? 7 - col : col;
+    if (piece !== null) {
+        if (piece.turn === shashki.Turns.White) {
+            if (piece.pieceType === shashki.PieceTypes.Man) {
+                gameBoard.setPiece([boardRow, boardCol], whiteMan);
+            } else {
+                gameBoard.setPiece([boardRow, boardCol], whiteKing);
+            }
+        }
+        if (piece.turn === shashki.Turns.Black) {
+            if (piece.pieceType === shashki.PieceTypes.Man) {
+                gameBoard.setPiece([boardRow, boardCol], blackMan);
+            } else {
+                gameBoard.setPiece([boardRow, boardCol], blackKing);
+            }
+        }
+    } else {
+        gameBoard.setPiece([boardRow, boardCol], null);
+    }
+};
 const setPieces = () => {
     for (let row = 0; row < 8; ++row) {
         for (let col = 0; col < 8; ++col) {
-            const piece = shashkiGame.boardState[row][col];
-            if (piece !== null) {
-                if (piece.turn === shashki.Turns.White) {
-                    if (piece.pieceType === shashki.PieceTypes.Man) {
-                        gameBoard.setPiece([row, col], whiteMan);
-                    } else {
-                        gameBoard.setPiece([row, col], whiteKing);
-                    }
-                }
-                if (piece.turn === shashki.Turns.Black) {
-                    if (piece.pieceType === shashki.PieceTypes.Man) {
-                        gameBoard.setPiece([row, col], blackMan);
-                    } else {
-                        gameBoard.setPiece([row, col], blackKing);
-                    }
-                }
-            } else {
-                gameBoard.setPiece([row, col], null);
-            }
+            setPiece(row, col);
         }
     }
 };

@@ -11,7 +11,7 @@ function Home() {
                 <Grid item xs={10}>
                     <Lobby />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid justify="space-between" container spacing={3} direction="column" item xs={2}>
                     <Buttons />
                 </Grid>
             </Grid>

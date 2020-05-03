@@ -10,7 +10,7 @@ const menuButton = (text: string) => (
 
 function Buttons() {
     return (
-        <Grid container spacing={3} direction="column">
+        <>
             <Grid item>{menuButton('custom')}</Grid>
             <Grid item>{menuButton('bullet 1+0')}</Grid>
             <Grid item>{menuButton('bullet 2+1')}</Grid>
@@ -21,7 +21,7 @@ function Buttons() {
             <Grid item>{menuButton('rapid 10+0')}</Grid>
             <Grid item>{menuButton('rapid 10+5')}</Grid>
             <Grid item>{menuButton('rapid 15+10')}</Grid>
-        </Grid>
+        </>
     );
 }
 
