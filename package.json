@@ -44,6 +44,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
+        "build:prod": "PUBLIC_URL=/public react-scripts build --production",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "analyze": "source-map-explorer 'build/static/js/*.js'",

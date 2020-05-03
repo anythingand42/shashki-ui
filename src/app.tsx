@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, useLocation, Redirect } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { CSSTransition, SwitchTransition } from 'react-transition-group';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Header from './header/header';
 import Home from './views/home';
 import Training from './views/training';
@@ -10,13 +11,14 @@ import appRoutes from './constants/app-routes';
 import SignIn from './views/sign-in/sign-in';
 import SignUp from './views/sign-up/sign-up';
 import AuthProvider from './auth/auth-provider';
+import theme from './theme';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((_theme: Theme) =>
     createStyles({
         container: {
-            paddingTop: theme.spacing(10),
+            paddingTop: _theme.spacing(10),
             height: '100%',
-            paddingBottom: theme.spacing(2),
+            paddingBottom: _theme.spacing(2),
         },
     }),
 );
@@ -35,6 +37,7 @@ function AnimatedSwitch() {
                     <Route exact path={appRoutes.training} component={Training} />
                     <Route exact path={appRoutes.signUp} component={SignUp} />
                     <Route exact path={appRoutes.signIn} component={SignIn} />
+                    <Redirect to="/" />
                 </Switch>
             </CSSTransition>
         </SwitchTransition>
@@ -44,14 +47,17 @@ function AnimatedSwitch() {
 function App() {
     const classes = useStyles();
     return (
-        <AuthProvider>
-            <Router>
-                <Header />
-                <Container className={classes.container} maxWidth="xl">
-                    <AnimatedSwitch />
-                </Container>
-            </Router>
-        </AuthProvider>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <AuthProvider>
+                <Router>
+                    <Header />
+                    <Container className={classes.container} maxWidth="xl">
+                        <AnimatedSwitch />
+                    </Container>
+                </Router>
+            </AuthProvider>
+        </ThemeProvider>
     );
 }
 
